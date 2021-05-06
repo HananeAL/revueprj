@@ -12,9 +12,9 @@
 <!-- Configuration XML du conteneur Bean datasource  -->
 <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	<property name="url" value="jdbc:mysql://localhost:3306/revueprj"/>
-	<property name="password" value=""/>
+	<property name="url" value="jdbc:mysql://localhost:3306/revue"/>
 	<property name="username" value="root"/>
+	<property name="password" value=""/>
 </bean>
 
 <!-- Configuration du conteneur Bean SessionFactory -->

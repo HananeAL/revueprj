@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import ma.revue.beans.Article;
 
-//@ContextConfiguration(locations= "classpath:springContext.xml")
+@ContextConfiguration(locations= "classpath:springContext.xml")
 public class TestDaoArticle {
 
 	@Autowired

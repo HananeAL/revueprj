@@ -25,6 +25,10 @@ public class Article {
 
 	@Column(name = "resume")
 	private String resume;
+	
+	public Article() {
+		
+	}
 
 	public long getIdArticle() {
 		return idArticle;
