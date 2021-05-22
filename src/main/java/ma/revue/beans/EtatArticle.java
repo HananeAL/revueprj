@@ -1,4 +1,4 @@
-apackage ma.revue.beans;
+package ma.revue.beans;
 
 public enum EtatArticle {
 

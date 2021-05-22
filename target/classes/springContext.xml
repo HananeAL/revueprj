@@ -3,47 +3,88 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-<context:annotation-config/>
+	<context:annotation-config />
 
-<!-- Configuration XML du conteneur Bean datasource  -->
-<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	<property name="url" value="jdbc:mysql://localhost:3306/revue"/>
-	<property name="username" value="root"/>
-	<property name="password" value=""/>
-</bean>
+	<!-- Configuration XML du conteneur Bean datasource -->
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/revueprj" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
 
-<!-- Configuration du conteneur Bean SessionFactory -->
-<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-	<property name="dataSource" ref="datasource"/>
-	<property name="hibernateProperties">
-		<props>
-			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-			<prop key="hibernate.show_sql">true</prop>
-			<prop key="hibernate.hbm2ddl.auto">create</prop>
-		</props>
-	</property>
-	<property name="annotatedClasses">
-		<list>
-			<value>ma.revue.beans.Article</value>
-		</list>
- 	</property>
-</bean>
+	<!-- Configuration du conteneur Bean SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="datasource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>ma.revue.beans.Article</value>
+				<value>ma.revue.beans.Auteur</value>
+				<value>ma.revue.beans.EtatArticle</value>
+				<value>ma.revue.beans.Affiliation</value> 
+			</list>
+		</property>
+	</bean>
 
-<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 
-<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	<property name="sessionFactory" ref="sessionFactory"></property>
-</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 
+	<!--  Configuration beans 
+	<bean id="d" class="ma.revue.dao.DaoArticle"></bean>
+	<bean id="articleService" class="ma.revue.services.ArticleService">
+		<property name="daoarticle" ref="d"></property>
+	</bean>
+	<bean id="daoauteur" class="ma.revue.dao.DaoAuteur"></bean> -->
+	
 
-<bean id="daoarticle" class="ma.revue.dao.DaoArticle"></bean>
+<!-- 	<bean id="logger" class="ma.revue.logAop.logAop"></bean> -->
+
+	<!-- Configuration aop -->
+	<!-- <aop:config>
+		<aop:pointcut
+			expression="execution(* *..DaoArticle.addArticle(..))"
+			id="loggeraddArticle" />
+		<aop:pointcut
+			expression="execution(* *..DaoAuteur.addAuteur(..))"
+			id="loggeraddAuteur" />
+		<aop:aspect ref="logger">
+			<aop:around method="logaroundmethode"
+				pointcut-ref="loggeraddArticle" />
+		</aop:aspect>
+		<aop:aspect ref="logger">
+			<aop:around method="logaroundmethode"
+				pointcut-ref="loggeraddAuteur" />
+		</aop:aspect>
+	</aop:config> -->
+
+	 <!-- <bean id="daoArticle" class="org.springframework.aop.framework.ProxyFactoryBean"> 
+		<property name="proxyInterfaces"> 
+		<value> ma.revue.dao.IdaoArticle </value> 
+		</property> <property name="target" ref="daoArticle" /> <property name="interceptorNames"> 
+		<list> <value>logAop</value> </list> </property> </bean> --> 
 
 </beans>
-
-
-

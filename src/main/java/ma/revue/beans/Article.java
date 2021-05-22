@@ -7,15 +7,24 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "article")
 public class Article {
+
+	public Article() {
+
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idArticle")
 	private long idArticle;
 
 	@ElementCollection
@@ -25,13 +34,13 @@ public class Article {
 
 	@Column(name = "resume")
 	private String resume;
-	
-	public Article() {
-		
-	}
 
 	public long getIdArticle() {
 		return idArticle;
+	}
+
+	public String getResume() {
+		return resume;
 	}
 
 	public void setIdArticle(long idArticle) {
@@ -46,16 +55,16 @@ public class Article {
 		this.keyWords = keyWords;
 	}
 
-	public String getResume() {
-		return resume;
-	}
-
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
 
-	/*
-	 * @Enumerated(EnumType.STRING) private EtatArticle etatArticle;
-	 */
+	@Enumerated(EnumType.STRING)
+	private EtatArticle etatArticle;
 
+	public void display() {
+		// TODO Auto-generated method stub
+		System.out.print("object create");
+		;
+	}
 }
