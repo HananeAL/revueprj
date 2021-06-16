@@ -2,6 +2,8 @@ package ma.revue.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,16 @@ import ma.revue.services.IArticleService;
 public class TestDaoArticle {
 
 	@Autowired
-	IArticleService articleService;
+	IArticleService daoArticle;
 
 	@Test
 	public void testAddArticle() {
 		Article article1 = new Article();
 		article1.setResume("block1");
-		articleService.addArticle(article1);
+		daoArticle.addArticle(article1);
 		long id = article1.getIdArticle();
-		assertEquals("block1", articleService.findById(id).getResume());
+		System.out.println(id);
+		assertEquals("block1", daoArticle.findById(id).getResume());
+
 	}
 }

@@ -15,7 +15,7 @@
 	<bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/revueprj" />
 		<property name="username" value="root" />
@@ -55,9 +55,6 @@
 
 	<!--  Configuration beans 
 	<bean id="d" class="ma.revue.dao.DaoArticle"></bean>
-	<bean id="articleService" class="ma.revue.services.ArticleService">
-		<property name="daoarticle" ref="d"></property>
-	</bean>
 	<bean id="daoauteur" class="ma.revue.dao.DaoAuteur"></bean> -->
 	
 

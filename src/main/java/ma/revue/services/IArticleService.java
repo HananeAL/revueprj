@@ -3,6 +3,7 @@ package ma.revue.services;
 import java.util.Set;
 
 import ma.revue.beans.Article;
+import ma.revue.dao.IdaoArticle;
 
 public interface IArticleService {
 
@@ -17,4 +18,6 @@ public interface IArticleService {
 	public Article findById(long idArticle);
 
 	public void deleteById(long idArticle);
+
+	void setClientDao(IdaoArticle daoArticle);
 }

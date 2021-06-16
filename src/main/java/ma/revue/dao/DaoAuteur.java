@@ -4,18 +4,22 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ma.revue.beans.Auteur;
 
 public class DaoAuteur {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+//	@Autowired
+//	private SessionFactory sessionFactory;
+//
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "springContext.xml" });
+	SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 
 	public long addAuteur(Auteur auteur) {
 		Session session = sessionFactory.getCurrentSession();

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import ma.revue.beans.Article;
 import ma.revue.dao.IdaoArticle;
 
-@Service("articleService")
-@Transactional
+@Service
 public class ArticleService implements IArticleService {
 
 	@Autowired
@@ -41,6 +40,10 @@ public class ArticleService implements IArticleService {
 
 	public void deleteById(long idArticle) {
 		daoArticle.deleteById(idArticle);
+	}
+
+	public void setClientDao(IdaoArticle daoArticle) {
+		// TODO Auto-generated method stub
 	}
 
 }

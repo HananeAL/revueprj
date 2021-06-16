@@ -19,7 +19,6 @@ import javax.persistence.Table;
 public class Article {
 
 	public Article() {
-
 	}
 
 	@Id
@@ -62,9 +61,4 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	private EtatArticle etatArticle;
 
-	public void display() {
-		// TODO Auto-generated method stub
-		System.out.print("object create");
-		;
-	}
 }
